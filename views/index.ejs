@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="notesApp"><html>
+  <% include partials/nav.ejs %>  
+  <body ng-controller="notesCtrl">
+  <% include partials/sidebar.ejs %>  
+    <div class="container-fluid" ng-init="getNotes()">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          
+          <h1 class="page-header">Dashboard - Notes</h1>
+          
+          <div class="col-sm-12">
+            Hello welcome to your notes.  You can search below.
+          </div>
+          <br><br>
+          <form class="col-md-12 form-group input-group-lg">
+            <input ng-model="query" type="text" class="form-control" placeholder="Search..." autofocus>
+          </form>
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>
+                    <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                      Title
+                      <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-down"></span>
+                    </a>
+                  </th>
+                  <th>
+                    Author
+                  </th>
+                  <th>
+                    Created Date
+                  </th>
+                  <th>Delete Note</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="note in userNotes | filter:query | unique: '_id' | orderBy:sortType:sortReverse">
+                  <td>{{ note.title }}</td>
+                  <td>{{ note.body }}</td>
+                  <td>{{ note._id | creationDate | date:'MMM d, y h:mm:ss a' }}</td>
+                  <td>
+                    <button class="btn btn-link" type="submit" ng-click="removeNote(note._id)"><i class="fa fa-times"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   </body>
+   <% include partials/javascripts.ejs %>  
+</html>
