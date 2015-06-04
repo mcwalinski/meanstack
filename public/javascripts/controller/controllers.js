@@ -1,4 +1,8 @@
-var postFav = angular.module('notesApp', ['angular.filter', 'notesFilter']);
+var postFav = angular.module('notesApp', ['angular.filter', 'notesFilter'])
+.config(function($locationProvider){
+    //uncomment below to use Angular for page routing
+    // $locationProvider.html5Mode(true);
+  })
 
 postFav.controller('notesCtrl', function ($scope, $http) {
 
