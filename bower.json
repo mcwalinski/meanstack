@@ -1,8 +1,8 @@
 {
-  "name": "PostFavoritesDash",
+  "name": "MeanStack",
   "version": "0.0.1",
-  "homepage": "https://github.com/WPMedia/PostFavorites_Dash",
-  "description": "vendor javascript files for PostFavoritesDash",
+  "homepage": "https://github.com/mcwalinski/meanstack",
+  "description": "",
   "license": "MIT",
   "ignore": [
   ],
