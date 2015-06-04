@@ -18,7 +18,7 @@ var UserNotes = require('./models/notes');
                 if (err)
                     res.send(err);
 
-                res.json({ all : notes }); // return all favorites in JSON format
+                res.json({ all : notes }); // return all notes in JSON format
             });
         });
 
@@ -37,9 +37,9 @@ var UserNotes = require('./models/notes');
         // route to handle creating (app.post)
         app.post('/api/addNote', function(req, res) { 
             
-            var newNote = new UserNotes(req.body);      // create a new instance of the userFav model
+            var newNote = new UserNotes(req.body);      // create a new instance of the notes model
             console.log(req.body);
-            newNote.title = req.body.title;  // set the favorite info (comes from the request)
+            newNote.title = req.body.title;  // set the notes info (comes from the request)
 
             newNote.save(function(err, note) {
                 if (err)
@@ -52,7 +52,7 @@ var UserNotes = require('./models/notes');
         // route to handle delete goes here based on object _id (app.delete)
         app.delete('/api/removeNote/:_id', function(req, res) { 
             
-        UserFavorites.remove({
+        UserNotes.remove({
             _id: req.params._id,
             }, function(err, note) {
                 if (err)

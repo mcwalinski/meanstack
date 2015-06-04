@@ -1,10 +1,10 @@
-var postFav = angular.module('notesApp', ['angular.filter', 'notesFilter'])
+var userNotes = angular.module('notesApp', ['angular.filter', 'notesFilter'])
 .config(function($locationProvider){
     //uncomment below to use Angular for page routing
     // $locationProvider.html5Mode(true);
-  })
+  });
 
-postFav.controller('notesCtrl', function ($scope, $http) {
+userNotes.controller('notesCtrl', function ($scope, $http) {
 
 	$scope.sortType     = 'note.title'; // set the default sort type
 	$scope.sortReverse  = false;  // set the default sort order
@@ -26,8 +26,8 @@ $scope.getNotes = function(value) {
 
     $http.get("/api/notes/" + $scope.uid, config, {}).
   		success(function(data) {
-    	$scope.userFavorites = data.userFavorites;
-    	console.log($scope.userFavorites);
+    	$scope.userNotes = data.notes;
+    	console.log($scope.userNotes);
     });
 }
 
