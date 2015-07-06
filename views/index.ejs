@@ -29,9 +29,6 @@
                     </a>
                   </th>
                   <th>
-                    Author
-                  </th>
-                  <th>
                     Created Date
                   </th>
                   <th>Delete Note</th>
@@ -39,8 +36,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat="note in userNotes | filter:query | unique: '_id' | orderBy:sortType:sortReverse">
-                  <td>{{ note.title }}</td>
-                  <td>{{ note.body }}</td>
+                  <td><a href="/note/{{note._id}}">{{ note.title }}</a></td>
                   <td>{{ note._id | creationDate | date:'MMM d, y h:mm:ss a' }}</td>
                   <td>
                     <button class="btn btn-link" type="submit" ng-click="removeNote(note._id)"><i class="fa fa-times"></i></button>

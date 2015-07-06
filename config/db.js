@@ -3,9 +3,9 @@
     //     url : 'mongodb://user:password@server:port/database'
     
     // Example Config
-    // module.exports = {
-    //     url : 'mongodb://myUser:P@$$w0rd@127.0.0.1:27017/mydatabase'
-    // }
+    module.exports = {
+        url : 'mongodb://clark:gabel@ds047762.mongolab.com:47762/mean_skeleton'
+    }
 
 // User a service like MongoLabs to setup a free database in a sandbox to test with. 
 // https://mongolab.com/

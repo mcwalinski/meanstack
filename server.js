@@ -18,7 +18,7 @@ var port = process.env.PORT || 3000;
 
 // connect to our mongoDB database 
 // (uncomment after you enter in your own credentials in config/db.js)
-// mongoose.connect(db.url); 
+mongoose.connect(db.url); 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

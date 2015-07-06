@@ -7,44 +7,41 @@ var UserNotes = require('./models/notes');
 
         // Server routes.  Handles api calls, authentication etc
 
-       
         // get all api call
         app.get('/api/notes', function(req, res) {
-            // use mongoose to get all  in the database
+            // use mongoose to get all notes in the database
+            // console.log('get notes');
             UserNotes.find(function(err, notes) {
-
                 // if there is an error retrieving, send the error. 
-                                // nothing after res.send(err) will execute
+                // nothing after res.send(err) will execute
                 if (err)
                     res.send(err);
-
                 res.json({ all : notes }); // return all notes in JSON format
             });
         });
 
-        // get notes api with paramater - uid
-        app.get('/api/userNotes/:uid', function(req, res) {
-            // use mongoose to get all notes in the database
-            UserNotes.find({
-                uid: req.params.uid
-                }, function(err, notes) {
+        // get single note api call
+        app.get('/api/notes/single/:_id', function(req, res) {
+            // use mongoose to get all nerds in the database
+            UserNotes.findOne({
+                _id: req.params._id
+                }, function(err, note) {
                     if (err)
                         res.send(err);
-                    res.json({ userNotes : notes }); // return all notes in JSON format
+                    res.json({ userNote : note }); // return all favorites in JSON format
             });
         });
 
         // route to handle creating (app.post)
         app.post('/api/addNote', function(req, res) { 
-            
             var newNote = new UserNotes(req.body);      // create a new instance of the notes model
             console.log(req.body);
             newNote.title = req.body.title;  // set the notes info (comes from the request)
-
+            console.log(req.body.title);
             newNote.save(function(err, note) {
                 if (err)
-                    res.send(err);
-
+                res.send(err);
+            console.log(err);
                 res.json({ message: 'Note Added!' + note });
             });
         });
@@ -65,8 +62,13 @@ var UserNotes = require('./models/notes');
 
         // route to handle root request
         app.get('/', function(req, res) {
-            var uid = req.param('uid');
-            res.render('index', {uid : uid}); // load our public/index.ejs file
+            res.render('index'); // load our public/index.ejs file
+        });
+
+        // route to handle root request
+        app.get('/note/:noteId', function(req, res) {
+            // load our public/note.ejs file and pass the note id
+            res.render('note', { noteId: req.params.noteId }); 
         });
 
         // catch 404 and forward to error handler
