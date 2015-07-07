@@ -65,10 +65,16 @@ var UserNotes = require('./models/notes');
             res.render('index'); // load our public/index.ejs file
         });
 
-        // route to handle root request
+        // route to handle note request
         app.get('/note/:noteId', function(req, res) {
             // load our public/note.ejs file and pass the note id
             res.render('note', { noteId: req.params.noteId }); 
+        });
+
+        // route to create request
+        app.get('/create', function(req, res) {
+            // load our public/create.ejs file
+            res.render('create'); 
         });
 
         // catch 404 and forward to error handler
