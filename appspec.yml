@@ -4,9 +4,6 @@ files:
   - source: /
     destination: /usr/local/meanstack
 hooks:
-  ApplicationStop:
-    - location: /scripts/kill.sh
-      timeout: 150
   AfterInstall:
     - location: /scripts/install.sh
       timeout: 150
