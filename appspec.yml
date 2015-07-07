@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /usr/local/meanstack
+hooks:
+  AfterInstall:
+    - location: /scripts/install.sh
+      timeout: 300
+  ApplicationStart:
+    - location: /scripts/start.sh
+      timeout: 300

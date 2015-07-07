@@ -58,7 +58,7 @@ var UserNotes = require('./models/notes');
             });
         });
 
-        // frontend routes 
+        // Frontend routes 
 
         // route to handle root request
         app.get('/', function(req, res) {
