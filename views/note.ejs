@@ -9,7 +9,7 @@
           
           <h1 class="page-header">{{userNote.title}}</h1>
           <!-- <h5>Created: {{userNote._id | creationDate | date:'MMM d, y h:mm:ss a'}}</h5> -->
-          <h5>Created: {{userNote._id}}</h5>
+          <h5>Created: {{ userNote._id | creationDate | date:'MMM d, y h:mm:ss a' }}</h5>
           
           <div class="col-sm-12">
             {{userNote.body}}
