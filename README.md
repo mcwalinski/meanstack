@@ -9,8 +9,11 @@ Checkout this project to your computer.
 open terminal and cd to the root directory of this project locally.
 
 run these commands:
+
 $ npm install
+
 $ bower install
+
 $ node server.js
 
 in your browser visit localhost:3000 the app should load up there.
