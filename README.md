@@ -1,5 +1,5 @@
 # meanstack
-A skeleton MeanStack App
+A skeleton MeanStack App and restful API
 
 ##To Run Locally##
 Install node: https://nodejs.org/download/
