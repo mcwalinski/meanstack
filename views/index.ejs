@@ -2,10 +2,9 @@
 <html ng-app="notesApp"><html>
   <% include partials/nav.ejs %>  
   <body ng-controller="notesCtrl">
-  <% include partials/sidebar.ejs %>  
     <div class="container-fluid" ng-init="getNotes()">
       <div class="row">
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-11 col-sm-offset-1 col-md-12 col-md-offset-0 main">
           
           <h1 class="page-header">Dashboard - Notes</h1>
           
@@ -23,24 +22,44 @@
                 <tr>
                   <th>
                     <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
-                      Title
+                      Name
                       <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-up"></span>
                       <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-down"></span>
                     </a>
                   </th>
                   <th>
-                    Created Date
+                    Email Address
                   </th>
-                  <th>Delete Note</th>
+                  <th>
+                    <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                      First Choice
+                      <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-down"></span>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                      Second Choice
+                      <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-down"></span>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                      Third Choice
+                      <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-down"></span>
+                    </a>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="note in userNotes | filter:query | unique: '_id' | orderBy:sortType:sortReverse">
-                  <td><a href="/note/{{note._id}}">{{ note.title }}</a></td>
-                  <td>{{ note._id | creationDate | date:'MMM d, y h:mm:ss a' }}</td>
-                  <td>
-                    <button class="btn btn-link" type="submit" ng-click="removeNote(note._id)"><i class="fa fa-times"></i></button>
-                  </td>
+                  <td><a href="/note/{{note._id}}">{{ note.first_and_last_name_1 }}</a></td>
+                  <td><a href="/note/{{note._id}}">{{ note.email_address_2 }}</a></td>
+                  <td><a href="/note/{{note._id}}">{{ note.first_choice_4 }}</a></td>
+                  <td><a href="/note/{{note._id}}">{{ note.second_choice_5 }}</a></td>
+                  <td><a href="/note/{{note._id}}">{{ note.third_choice_17 }}</a></td>
                 </tr>
               </tbody>
             </table>

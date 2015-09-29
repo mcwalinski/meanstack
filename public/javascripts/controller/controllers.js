@@ -24,7 +24,7 @@ $scope.filterFunction = function(element) {
 // Get Notes
 $scope.getNotes = function() {
     config ={};
-    $http.get("/api/notes", config, {}).
+    $http.get("https://sub.washingtonpost.com/55db882e53590b18611b7f66/viewSubs.jsonp?&callback=data", config, {}).
   		success(function(data) {
     	$scope.userNotes = data.all;
     	console.log($scope.userNotes);
