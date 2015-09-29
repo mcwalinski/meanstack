@@ -6,10 +6,10 @@
       <div class="row">
         <div class="col-sm-11 col-sm-offset-1 col-md-12 col-md-offset-0 main">
           
-          <h1 class="page-header">Dashboard - Notes</h1>
+          <h1 class="page-header">Newsroom Internship - Submissions</h1>
           
           <div class="col-sm-12">
-            Hello welcome to your notes.  You can search below.
+            Hello welcome to Newsroom Internship Submissions.  You can search below.
           </div>
           <br><br>
           <form class="col-md-12 form-group input-group-lg">
@@ -55,11 +55,11 @@
               </thead>
               <tbody>
                 <tr ng-repeat="note in userNotes | filter:query | unique: '_id' | orderBy:sortType:sortReverse">
-                  <td><a href="/note/{{note._id}}">{{ note.first_and_last_name_1 }}</a></td>
-                  <td><a href="/note/{{note._id}}">{{ note.email_address_2 }}</a></td>
-                  <td><a href="/note/{{note._id}}">{{ note.first_choice_4 }}</a></td>
-                  <td><a href="/note/{{note._id}}">{{ note.second_choice_5 }}</a></td>
-                  <td><a href="/note/{{note._id}}">{{ note.third_choice_17 }}</a></td>
+                  <td><a href="https://sub.washingtonpost.com/submission/{{note._id}}" target="_blank">{{ note.formData.first_and_last_name_1 }}</a></td>
+                  <td>{{ note.formData.email_address_2 }}</td>
+                  <td>{{ note.formData.first_choice_4 }}</td>
+                  <td>{{ note.formData.second_choice_5 }}</td>
+                  <td>{{ note.formData.third_choice_17 }}</td>
                 </tr>
               </tbody>
             </table>

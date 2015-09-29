@@ -24,10 +24,18 @@ $scope.filterFunction = function(element) {
 // Get Notes
 $scope.getNotes = function() {
     config ={};
-    $http.get("https://sub.washingtonpost.com/55db882e53590b18611b7f66/viewSubs.jsonp?&callback=data", config, {}).
-  		success(function(data) {
-    	$scope.userNotes = data.all;
-    	console.log($scope.userNotes);
+    // $http.jsonp("https://sub.washingtonpost.com/internal/55db882e53590b18611b7f66/subs.jsonp?&callback=JSON_CALLBACK", config, {}).
+  		// success(function(data) {
+    // 	$scope.userNotes = data.all;
+    // 	console.log($scope.userNotes);
+    // });
+
+    var url = "https://sub.washingtonpost.com/internal/55db882e53590b18611b7f66/subs.jsonp?&callback=JSON_CALLBACK";
+
+    $http.jsonp(url)
+      .success(function(data){
+        $scope.userNotes = data.Submissions;
+        // console.log(data.Submissions);
     });
 }
 
