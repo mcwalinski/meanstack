@@ -5,3 +5,11 @@ angular.module('notesFilter', []).filter('creationDate', [function () {
     return createdDate;
   };
 }])
+
+
+angular.module('nameFilter', []).filter('nameClean', [function () {
+  return function (value) {
+        return (!value) ? '' : value.replace(/[^a-zA-Z 0-9]+/g,' ');
+
+    };
+}])

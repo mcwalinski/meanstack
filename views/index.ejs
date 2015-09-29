@@ -6,10 +6,10 @@
       <div class="row">
         <div class="col-sm-11 col-sm-offset-1 col-md-12 col-md-offset-0 main">
           
-          <h1 class="page-header">Newsroom Internship - Submissions</h1>
-          
+          <h1 class="page-header">Newsroom Internship Applications</h1>
+          <h4>Total Submitted Applications: <b>{{userNotes.length}}</b> </h4>
           <div class="col-sm-12">
-            Hello welcome to Newsroom Internship Submissions.  You can search below.
+          Welcome to an admin view of Newsroom Internship Applications.  You can search below.
           </div>
           <br><br>
           <form class="col-md-12 form-group input-group-lg">
@@ -21,41 +21,41 @@
               <thead>
                 <tr>
                   <th>
-                    <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                    <a href="#" ng-click="sortType = 'formData.first_and_last_name_1'; sortReverse = !sortReverse">
                       Name
-                      <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-up"></span>
-                      <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'formData.first_and_last_name_1' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'formData.first_and_last_name_1' && sortReverse" class="fa fa-caret-down"></span>
                     </a>
                   </th>
                   <th>
                     Email Address
                   </th>
                   <th>
-                    <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                    <a href="#" ng-click="sortType = 'formData.first_choice_4'; sortReverse = !sortReverse">
                       First Choice
-                      <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-up"></span>
-                      <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'formData.first_choice_4' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'formData.first_choice_4' && sortReverse" class="fa fa-caret-down"></span>
                     </a>
                   </th>
                   <th>
-                    <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                    <a href="#" ng-click="sortType = 'formData.second_choice_5'; sortReverse = !sortReverse">
                       Second Choice
-                      <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-up"></span>
-                      <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'formData.second_choice_5' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'formData.second_choice_5' && sortReverse" class="fa fa-caret-down"></span>
                     </a>
                   </th>
                   <th>
-                    <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                    <a href="#" ng-click="sortType = 'formData.third_choice_17'; sortReverse = !sortReverse">
                       Third Choice
-                      <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-up"></span>
-                      <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'formData.third_choice_17' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'formData.third_choice_17' && sortReverse" class="fa fa-caret-down"></span>
                     </a>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="note in userNotes | filter:query | unique: '_id' | orderBy:sortType:sortReverse">
-                  <td><a href="https://sub.washingtonpost.com/submission/{{note._id}}" target="_blank">{{ note.formData.first_and_last_name_1 }}</a></td>
+                  <td><a href="https://sub.washingtonpost.com/submission/{{note._id}}" target="_blank">{{ note.formData.first_and_last_name_1 | nameClean}}</a></td>
                   <td>{{ note.formData.email_address_2 }}</td>
                   <td>{{ note.formData.first_choice_4 }}</td>
                   <td>{{ note.formData.second_choice_5 }}</td>
