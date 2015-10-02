@@ -9,7 +9,7 @@
           <h1 class="page-header">Newsroom Internship Applications</h1>
           <h4 ng-hide="query.formData.first_choice_4.length != null">Total Submitted Applications: <b>{{userNotes.length}}</b> </h4>
 
-          <h4 ng-hide="query.formData.first_choice_4.length == null">Total Filtered Applications: <b>{{query.formData.first_choice_4.length}}</b> </h4>
+          <h4 ng-hide="query.formData.first_choice_4.length == null">Total Filtered Applications: <b>{{filtered.length}}</b> </h4>
 
           <div class="col-sm-12">
           Welcome to an admin view of Newsroom Internship Applications.  You can search below.
@@ -23,9 +23,23 @@
             <div class="col-md-6">
               <label for="query.formData.first_choice_4">First Choice:</label>
               <select class="form-control" ng-model="query.formData.first_choice_4">
-                <option value="" selected disabled>Select Choice</option>
+                <option value="" class="">-- Select an option --</option>
+                <option>Reporters: Business/Financial</option>
                 <option>Reporters: Features</option>
+                <option>Reporters: Foreign (assignments would be in the Washington newsroom)</option>
+                <option>Reporters: Investigative</option>
+                <option>Reporters: Local</option>
+                <option>Reporters: National (includes health/science)</option>
+                <option>Reporters: Sports</option>
                 <option>Editorial Writers</option>
+                <option>Visual Journalists: Photography</option>
+                <option>Visual Journalists: Video</option>
+                <option>Copy Editors</option>
+                <option>Multiplatform Producers</option>
+                <option>News Designers</option>
+                <option>Digital Designers</option>
+                <option>Graphic Reporters</option>
+                <option>Graphic Developers</option>
                 <option>Social Media Producers</option>
               </select>
           </div>
@@ -69,8 +83,9 @@
                   </th>
                 </tr>
               </thead>
-              <tbody >
-                <tr ng-repeat-start="note in userNotes | filter:query | unique: '_id' | orderBy:sortType:sortReverse">
+              <tbody>
+              <!-- filtered = (userNotes | filter: query | unique: '_id') -->
+                <tr ng-repeat-start="note in filtered = (userNotes | filter: query | unique: '_id') | orderBy:sortType:sortReverse">
                   <td rowspan="1" colspan="1" data-toggle="collapse" data-target="#{{note._id}}" class="accordion-toggle">
                     <button >+</button>
                   </td>
