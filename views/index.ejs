@@ -4,7 +4,7 @@
   <body ng-controller="notesCtrl">
     <div class="container-fluid" ng-init="getNotes()">
       <div class="row">
-        <div class="col-sm-11 col-sm-offset-1 col-md-12 col-md-offset-0 main">
+        <div class="col-md-12 main">
           
           <h1 class="page-header">Newsroom Internship Applications</h1>
           <h4>Total Submitted Applications: <b>{{userNotes.length}}</b> </h4>
@@ -16,10 +16,11 @@
             <input ng-model="query" type="text" class="form-control" placeholder="Search..." autofocus>
           </form>
 
-          <div class="table-responsive">
+          <div class="col-md-12 table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
+                  <th style="width: 30px;"></th>
                   <th>
                     <a href="#" ng-click="sortType = 'formData.first_and_last_name_1'; sortReverse = !sortReverse">
                       Name
@@ -53,13 +54,23 @@
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                <tr ng-repeat="note in userNotes | filter:query | unique: '_id' | orderBy:sortType:sortReverse">
-                  <td><a href="https://sub.washingtonpost.com/submission/{{note._id}}" target="_blank">{{ note.formData.first_and_last_name_1 | nameClean}}</a></td>
-                  <td>{{ note.formData.email_address_2 }}</td>
-                  <td>{{ note.formData.first_choice_4 }}</td>
-                  <td>{{ note.formData.second_choice_5 }}</td>
-                  <td>{{ note.formData.third_choice_17 }}</td>
+              <tbody >
+                <tr ng-repeat-start="note in userNotes | filter:query | unique: '_id' | orderBy:sortType:sortReverse">
+                  <td rowspan="1" colspan="1" data-toggle="collapse" data-target="#{{note._id}}" class="accordion-toggle">
+                    <button >+</button>
+                  </td>
+                  <td rowspan="1" colspan="1"><a href="https://sub.washingtonpost.com/submission/{{note._id}}" target="_blank">{{ note.formData.first_and_last_name_1 | nameClean}}</a></td>
+                  <td rowspan="1" colspan="1">{{ note.formData.email_address_2 }}</td>
+                  <td rowspan="1" colspan="1">{{ note.formData.first_choice_4 }}</td>
+                  <td rowspan="1" colspan="1">{{ note.formData.second_choice_5 }}</td>
+                  <td rowspan="1" colspan="1">{{ note.formData.third_choice_17 }}</td>
+                </tr>
+                <tr ng-repeat-end="">
+                    <td colspan="6" class="hiddenRow">
+                      <div id="{{note._id}}" class="accordian-body collapse">
+                        <p>{{note.formData}}</p>
+                      </div>
+                    </td>
                 </tr>
               </tbody>
             </table>
