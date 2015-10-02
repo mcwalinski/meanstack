@@ -65,6 +65,16 @@ var UserNotes = require('./models/notes');
             res.render('index'); // load our public/index.ejs file
         });
 
+        // route to handle root request
+        // app.get('/:choice', function(req, res) {
+        //     res.render('index', {
+        //         firstChoice : req.params.choice }); 
+        //     console.log(firstChoice);
+        //     console.log(req.params.choice);
+        //         // load our public/index.ejs file
+        // });
+
+
         // route to handle note request
         app.get('/note/:noteId', function(req, res) {
             // load our public/note.ejs file and pass the note id
