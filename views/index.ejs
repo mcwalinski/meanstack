@@ -7,9 +7,37 @@
         <div class="col-md-12 main">
           
           <h1 class="page-header">Newsroom Internship Applications</h1>
-          
-    <p><%= firstChoice %></p>
-    <p>{{query.formData.first_choice_4}}</p>
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Links to Features</a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+                <p><a href="/feature/Reporters: Business/Financial">Reporters: Business/Financial</a></p>
+                <p><a href="/feature/Reporters: Features">Reporters: Features</a></p>
+                <p><a href="/feature/Reporters: Foreign (assignments would be in the Washington newsroom)">Reporters: Foreign (assignments would be in the Washington newsroom)</a></p>
+                <p><a href="/feature/Reporters: Investigative">Reporters: Investigative</a></p>
+                <p><a href="/feature/Reporters: Local">Reporters: Local</a></p>
+                <p><a href="/feature/Reporters: National (includes health/science)">Reporters: National (includes health/science)</a></p>
+                <p><a href="/feature/Reporters: Sports">Reporters: Sports</a></p>
+                <p><a href="/feature/Editorial Writers">Editorial Writers</a></p>
+                <p><a href="/feature/Visual Journalists: Video">Visual Journalists: Video</a></p>
+                <p><a href="/feature/Copy Editors">Copy Editors</a></p>
+                <p><a href="/feature/Multiplatform Producers">Multiplatform Producers</a></p>
+                <p><a href="/feature/News Designers">News Designers</a></p>
+                <p><a href="/feature/Digital Designers">Digital Designers</a></p>
+                <p><a href="/feature/Graphic Reporters">Graphic Reporters</a></p>
+                <p><a href="/feature/Graphic Developers">Graphic Developers</a></p>
+                <p><a href="/feature/Social Media Producers">Social Media Producers</a></p>    
+      </div>
+    </div>
+  </div>
+</div>
+  
     
           <h4 ng-hide="query.formData.first_choice_4.length != null">Total Submitted Applications: <b>{{userNotes.length}}</b> </h4>
 
