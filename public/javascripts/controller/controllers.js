@@ -19,7 +19,8 @@ userNotes.controller('notesCtrl', function ($scope, $http) {
   // $scope.init = function(firstChoice)
   // {
   //   $scope.query.formData.first_choice_4 = firstChoice; 
-  //   console.log($scope.query.formData.first_choice_4);
+  //   console.log(firstChoice);
+  //   // console.log($scope.query.formData.first_choice_4);
   //   //Based on passed argument you can make a call to resource
   //   //and initialize more objects
   // };
@@ -30,7 +31,7 @@ $scope.filterFunction = function(element) {
 };
 
 // Get Notes
-$scope.getNotes = function() {
+$scope.getNotes = function(firstChoice) {
     config ={};
     $scope.stuff = {};
     var url = "https://sub.washingtonpost.com/external/55db882e53590b18611b7f66/viewSubs.jsonp?&callback=JSON_CALLBACK";
@@ -42,51 +43,9 @@ $scope.getNotes = function() {
          tempArr.push( { test :  value } );
         });
         $scope.stuff=tempArr;
-        console.log($scope.userNotes);
     });
 }
 
-// Single Note
-$scope.singleNote = function(value) {
-    $scope.id = value;
-    config ={};
-    $http.get("/api/notes/single/" + $scope.id, config, {}).
-      success(function(data) {
-      $scope.userNote = data.userNote;
-      console.log($scope.userNote);
-    });
-}
-
-
-// Add Note
-$scope.addNote = function() {
-  $scope.messages.addNote = {};
-  	var url = '/api/addNote/';
-  	$http.post(url, $scope.newNote)
-      .success(function(data){
-        window.console.log(data);
-        $scope.newNote = {};
-        $scope.messages.addNote.success = "Great job! Add another one!"
-      })
-      .error(function(data,status){
-        window.console.log(data + status);
-        $scope.messages.addNote.error = "Error encountered while adding note.";
-      });
-}
-
-// Remove Note
-$scope.removeNote = function(value) {
-  // value is the note id
-	var url = '/api/removeNote/'+ value;
-	$http.delete(url)
-    .success(function(data){
-      window.console.log(data);
-      $scope.getNotes();
-    })
-    .error(function(data,status){
-      window.console.log(data + status);
-    });
-}
 
 
 });
