@@ -1,4 +1,4 @@
-var userNotes = angular.module('notesApp', ['angular.filter', 'notesFilter', 'nameFilter'])
+var userNotes = angular.module('notesApp', ['angular.filter', 'notesFilter', 'nameFilter', 'xeditable'])
 .config(function($locationProvider){
     //uncomment below to use Angular for page routing
     // $locationProvider.html5Mode(true);
@@ -11,19 +11,50 @@ userNotes.controller('notesCtrl', function ($scope, $http) {
 	$scope.search   	= '';     // set the default search/filter term
   $scope.newNote = {}; // create object to contain new note
   $scope.messages = {}; // create object to contain messages to the user
+  $scope.loading = false;
 	
 	$(function () {
 	  $('[data-toggle="tooltip"]').tooltip()
 	})
 
-  // $scope.init = function(firstChoice)
-  // {
-  //   $scope.query.formData.first_choice_4 = firstChoice; 
-  //   console.log(firstChoice);
-  //   // console.log($scope.query.formData.first_choice_4);
-  //   //Based on passed argument you can make a call to resource
-  //   //and initialize more objects
-  // };
+
+  $scope.features = [
+      {value:'Reporters: Business/Financial', text:'Reporters: Business/Financial'},
+      {value:'Reporters: Features', text:'Reporters: Features'},
+      {value:'Reporters: Foreign (assignments would be in the Washington newsroom)', text:'Reporters: Foreign (assignments would be in the Washington newsroom)'},
+      {value:'Reporters: Local', text:'Reporters: Local'},
+      {value:'Reporters: National (includes health/science)', text:'Reporters: National (includes health/science)'},
+      {value:'Reporters: Sports', text:'Reporters: Sports'},
+      {value:'Editorial Writers', text:'Editorial Writers'},
+      {value:'Visual Journalists: Photography', text:'Visual Journalists: Photography'},
+      {value:'Visual Journalists: Video', text:'Visual Journalists: Video'},
+      {value:'Copy Editors', text:'Copy Editors'},
+      {value:'Multiplatform Producers', text:'Multiplatform Producers'},
+      {value:'News Designers', text:'News Designers'},
+      {value:'Digital Designers', text:'Digital Designers'},
+      {value:'Graphic Reporters', text:'Graphic Reporters'},
+      {value:'Graphic Developers', text:'Graphic Developers'},
+      {value:'Social Media Producers', text:'Social Media Producers'}
+  ];
+
+  $scope.updateUserNote = function(data, note) {
+    $scope.Sub = note;
+      return $http.post('https://sub.washingtonpost.com/updateSub', $scope.Sub);
+  };
+
+  $scope.updateUserFeature = function(data, note) {
+    console.log(data, note);
+    $scope.Sub = note;
+    console.log ($scope.Sub);
+      return $http.post('https://sub.washingtonpost.com/updateSub', $scope.Sub);
+  };
+
+  $scope.updateUserFeature2 = function(data, note) {
+    console.log(data, note);
+    $scope.Sub = note;
+    console.log ($scope.Sub);
+      return $http.post('https://sub.washingtonpost.com/updateSub', $scope.Sub);
+  };
 
   // Search
   $scope.filterFunction = function(element) {
@@ -34,9 +65,11 @@ userNotes.controller('notesCtrl', function ($scope, $http) {
   $scope.getNotes = function(firstChoice) {
       config ={};
       $scope.stuff = {};
+      $scope.loading = true;
       var url = "https://sub.washingtonpost.com/external/55db882e53590b18611b7f66/viewSubs.jsonp?&callback=JSON_CALLBACK";
       $http.jsonp(url)
         .success(function(data){
+          $scope.loading = false;
           $scope.userNotes = data.Submissions;
           var tempArr = [];
           angular.forEach($scope.userNotes, function(value){

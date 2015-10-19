@@ -8,7 +8,13 @@
         <div class="col-md-10 col-sm-offset-2 main">
           
           <h1 class="page-header">Newsroom Internship Applications</h1>
-    
+
+          <h1 ng-show="loading">
+            <i class="fa fa-tasks"></i>
+            We're Loading up the applicants...
+          </h1>
+
+          <div ng-hide="loading"> 
           <h4 ng-hide="query.formData.first_choice_4.length != null">Total Submitted Applications: <b>{{userNotes.length}}</b> </h4>
 
           <h4 ng-hide="query.formData.first_choice_4.length == null">Total Filtered Applications: <b>{{filtered.length}}</b>
@@ -96,9 +102,9 @@
                   </td>
                   <td rowspan="1" colspan="1"><a href="https://sub.washingtonpost.com/submission/{{note._id}}" target="_blank">{{ note.formData.first_and_last_name_1 | nameClean}}</a></td>
                   <td rowspan="1" colspan="1">{{ note.formData.email_address_2 }}</td>
-                  <td rowspan="1" colspan="1">{{ note.formData.first_choice_4 }}</td>
-                  <td rowspan="1" colspan="1">{{ note.formData.second_choice_5 }}</td>
-                  <td rowspan="1" colspan="1">{{ note.formData.editor_notes_120 }}</td>
+                  <td rowspan="1" colspan="1" editable-select="note.formData.first_choice_4" e-ng-options="feature.value as feature.text for feature in features" onaftersave="updateUserFeature($data, note)">{{ note.formData.first_choice_4 || empty}}</td>
+                  <td rowspan="1" colspan="1" editable-select="note.formData.second_choice_5" e-ng-options="feature.value as feature.text for feature in features" onaftersave="updateUserFeature2($data, note)">{{ note.formData.second_choice_5 || empty}} </td>
+                  <td rowspan="1" colspan="1" editable-textarea="note.formData.editor_notes_120" e-rows="7" e-cols="40" onaftersave="updateUserNote($data, note)">{{ note.formData.editor_notes_120 || empty}}</td>
                 </tr>
                 <tr ng-repeat-end="">
                     <td colspan="6" class="hiddenRow">
@@ -114,6 +120,7 @@
               </tbody>
             </table>
           </div>
+        </div>
         </div>
       </div>
     </div>
