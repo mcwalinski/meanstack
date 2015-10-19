@@ -80,10 +80,10 @@
                     </a>
                   </th>
                   <th>
-                    <a href="#" ng-click="sortType = 'formData.third_choice_17'; sortReverse = !sortReverse">
-                      Third Choice
-                      <span ng-show="sortType == 'formData.third_choice_17' && !sortReverse" class="fa fa-caret-up"></span>
-                      <span ng-show="sortType == 'formData.third_choice_17' && sortReverse" class="fa fa-caret-down"></span>
+                    <a href="#" ng-click="sortType = 'formData.teditor_notes_120'; sortReverse = !sortReverse">
+                      Editor Notes
+                      <span ng-show="sortType == 'formData.editor_notes_120' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'formData.editor_notes_120' && sortReverse" class="fa fa-caret-down"></span>
                     </a>
                   </th>
                 </tr>
@@ -98,12 +98,16 @@
                   <td rowspan="1" colspan="1">{{ note.formData.email_address_2 }}</td>
                   <td rowspan="1" colspan="1">{{ note.formData.first_choice_4 }}</td>
                   <td rowspan="1" colspan="1">{{ note.formData.second_choice_5 }}</td>
-                  <td rowspan="1" colspan="1">{{ note.formData.third_choice_17 }}</td>
+                  <td rowspan="1" colspan="1">{{ note.formData.editor_notes_120 }}</td>
                 </tr>
                 <tr ng-repeat-end="">
                     <td colspan="6" class="hiddenRow">
                       <div id="{{note._id}}" class="accordian-body collapse">
-                        <p>{{note.formData}}</p>
+                      <div ng-repeat="(key, value) in note.formData">
+                          <p>
+                            <b>{{key}}</b> : {{value}}
+                          </p>
+                      </div>
                       </div>
                     </td>
                 </tr>
