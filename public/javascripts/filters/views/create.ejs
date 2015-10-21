@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="notesApp"><html>
+  <% include partials/nav.ejs %>  
+  <body ng-controller="notesCtrl">
+  <% include partials/sidebar.ejs %>  
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          
+          <h1 class="page-header">Create a note</h1>
+          <!-- <h5>Created: {{userNote._id | creationDate | date:'MMM d, y h:mm:ss a'}}</h5> -->
+          
+          <div class="col-sm-12">
+            <div class="alert alert-success" role="alert" ng-show="messages.addNote.success">{{messages.addNote.success}}</div>
+            <div class="alert alert-danger" role="alert" ng-show="messages.addNote.error">{{messages.addNote.error}}</div>
+            <form name="createForm" ng-submit="addNote()" novalidate>
+
+              <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" ng-model="newNote.title" name="title" required/>
+              </div>
+
+              <div class="form-group">
+                <label>Body</label>
+                <textarea class="form-control" ng-model="newNote.body" name="body" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" ng-disabled="createForm.$invalid">Create</button>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+   </body>
+   <% include partials/javascripts.ejs %>  
+</html>

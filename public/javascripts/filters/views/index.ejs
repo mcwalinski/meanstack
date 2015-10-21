@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="notesApp"><html>
+  <% include partials/nav.ejs %>  
+  <body ng-controller="notesCtrl">
+    <div class="container-fluid" ng-init="getNotes()">
+      <div class="row">
+        <div class="col-md-12 main">
+          
+          <h1 class="page-header">Newsroom Internship Applications</h1>
+          <h4>Total Submitted Applications: <b>{{userNotes.length}}</b> </h4>
+          <div class="col-sm-12">
+          Welcome to an admin view of Newsroom Internship Applications.  You can search below.
+          </div>
+          <br><br>
+          <form class="col-md-12 form-group input-group-lg">
+            <span class="col-md-6">
+              <label for="query.$">Free Text Search:</label>
+              <input ng-model="query.$" type="text" class="form-control" placeholder="Search..." autofocus>
+            </span>
+            <div class="col-md-6">
+              <label for="query.formData.first_choice_4">First Choice:</label>
+              <select class="form-control" ng-model="query.formData.first_choice_4">
+                <option value="" selected disabled>Select Choice</option>
+                <option>Reporters: Features</option>
+                <option>Editorial Writers</option>
+                <option>Social Media Producers</option>
+              </select>
+          </div>
+          </form>
+
+          <div class="col-md-12 table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th style="width: 30px;"></th>
+                  <th>
+                    <a href="#" ng-click="sortType = 'formData.first_and_last_name_1'; sortReverse = !sortReverse">
+                      Name
+                      <span ng-show="sortType == 'formData.first_and_last_name_1' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'formData.first_and_last_name_1' && sortReverse" class="fa fa-caret-down"></span>
+                    </a>
+                  </th>
+                  <th>
+                    Email Address
+                  </th>
+                  <th>
+                    <a href="#" ng-click="sortType = 'formData.first_choice_4'; sortReverse = !sortReverse">
+                      First Choice
+                      <span ng-show="sortType == 'formData.first_choice_4' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'formData.first_choice_4' && sortReverse" class="fa fa-caret-down"></span>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="#" ng-click="sortType = 'formData.second_choice_5'; sortReverse = !sortReverse">
+                      Second Choice
+                      <span ng-show="sortType == 'formData.second_choice_5' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'formData.second_choice_5' && sortReverse" class="fa fa-caret-down"></span>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="#" ng-click="sortType = 'formData.third_choice_17'; sortReverse = !sortReverse">
+                      Third Choice
+                      <span ng-show="sortType == 'formData.third_choice_17' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'formData.third_choice_17' && sortReverse" class="fa fa-caret-down"></span>
+                    </a>
+                  </th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr ng-repeat-start="note in userNotes | filter:query | unique: '_id' | orderBy:sortType:sortReverse">
+                  <td rowspan="1" colspan="1" data-toggle="collapse" data-target="#{{note._id}}" class="accordion-toggle">
+                    <button >+</button>
+                  </td>
+                  <td rowspan="1" colspan="1"><a href="https://sub.washingtonpost.com/submission/{{note._id}}" target="_blank">{{ note.formData.first_and_last_name_1 | nameClean}}</a></td>
+                  <td rowspan="1" colspan="1">{{ note.formData.email_address_2 }}</td>
+                  <td rowspan="1" colspan="1">{{ note.formData.first_choice_4 }}</td>
+                  <td rowspan="1" colspan="1">{{ note.formData.second_choice_5 }}</td>
+                  <td rowspan="1" colspan="1">{{ note.formData.third_choice_17 }}</td>
+                </tr>
+                <tr ng-repeat-end="">
+                    <td colspan="6" class="hiddenRow">
+                      <div id="{{note._id}}" class="accordian-body collapse">
+                        <p>{{note.formData}}</p>
+                      </div>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   </body>
+   <% include partials/javascripts.ejs %>  
+</html>
