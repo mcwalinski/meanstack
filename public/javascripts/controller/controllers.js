@@ -118,5 +118,23 @@ userNotes.controller('notesCtrl', function ($scope, $http) {
 
   }
 
+    //Search Notes
+  $scope.searchNotes = function(query) {
+      config ={};
+      $scope.stuff = {};
+      var url = "https://sub.washingtonpost.com/external/55db882e53590b18611b7f66/viewSubs.jsonp?&callback=JSON_CALLBACK";
+      $scope.loading = true;
+        $http.jsonp(url)
+          .success(function(data){
+            $scope.loading = false;
+            $scope.userNotes = data.Submissions;
+            var tempArr = [];
+            angular.forEach($scope.userNotes, function(value){
+             tempArr.push( { test :  value } );
+            });
+            $scope.stuff=tempArr;
+        });
+  }
+
 
 });
