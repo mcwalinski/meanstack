@@ -63,7 +63,7 @@ var UserNotes = require('./models/notes');
         // route to handle root request
         app.get('/', function(req, res) {
             res.render('index', {
-             firstChoice : null
+             firstChoice : 'null'
            });
         });
 

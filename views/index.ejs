@@ -23,7 +23,7 @@
           </h4>
 
           <div class="col-sm-10">
-          Welcome to an admin view of Newsroom Internship Applications.  You can search below.
+          Welcome to an admin view of Newsroom Internship Applications.  Click on a link to the left to fill out the table below with submissions for your section. 
           </div>
           <br><br>
           <form class="col-md-12 form-group input-group-lg">
@@ -86,10 +86,17 @@
                     </a>
                   </th>
                   <th>
-                    <a href="#" ng-click="sortType = 'formData.teditor_notes_120'; sortReverse = !sortReverse">
+                    <a href="#" ng-click="sortType = 'formData.editor_notes_120'; sortReverse = !sortReverse">
                       Editor Notes
                       <span ng-show="sortType == 'formData.editor_notes_120' && !sortReverse" class="fa fa-caret-up"></span>
                       <span ng-show="sortType == 'formData.editor_notes_120' && sortReverse" class="fa fa-caret-down"></span>
+                    </a>
+                  </th>
+                  <th>
+                    <a href="#" ng-click="sortType = 'formData.finalist_121'; sortReverse = !sortReverse">
+                      Finalist
+                      <span ng-show="sortType == 'formData.finalist_121' && !sortReverse" class="fa fa-caret-up"></span>
+                      <span ng-show="sortType == 'formData.finalist_121' && sortReverse" class="fa fa-caret-down"></span>
                     </a>
                   </th>
                 </tr>
@@ -100,12 +107,15 @@
                   <td rowspan="1" colspan="1" data-toggle="collapse" data-target="#{{note._id}}" class="accordion-toggle">
                     <button >+</button>
                   </td>
-                  <td rowspan="1" colspan="1"><a href="https://sub.washingtonpost.com/submission/{{note._id}}" target="_blank">{{ note.formData.first_and_last_name_1 | nameClean}}</a></td>
+                  <td rowspan="1" colspan="1"><a href="https://sub.washingtonpost.com/internship/{{note._id}}" target="_blank">{{ note.formData.first_and_last_name_1 | nameClean}}</a></td>
                   <td rowspan="1" colspan="1">{{ note.formData.email_address_2 }}</td>
                   <td rowspan="1" colspan="1" editable-select="note.formData.first_choice_4" e-ng-options="feature.value as feature.text for feature in features" onaftersave="updateUserFeature($data, note)">{{ note.formData.first_choice_4 || empty}}</td>
                   <td rowspan="1" colspan="1" editable-select="note.formData.second_choice_5" e-ng-options="feature.value as feature.text for feature in features" onaftersave="updateUserFeature2($data, note)">{{ note.formData.second_choice_5 || empty}} </td>
                   <td rowspan="1" colspan="1" editable-textarea="note.formData.editor_notes_120" e-rows="7" e-cols="40" onaftersave="updateUserNote($data, note)">{{ note.formData.editor_notes_120 || empty}}</td>
-                </tr>
+
+                  <td rowspan="1" colspan="1" editable-checkbox="note.formData.finalist_121" e-title="" onaftersave="updateUserFinalist($data, note)">
+                      {{ note.formData.finalist_121 && "Finalist" || "" }}</td>
+                  </tr>
                 <tr ng-repeat-end="">
                     <td colspan="6" class="hiddenRow">
                       <div id="{{note._id}}" class="accordian-body collapse">

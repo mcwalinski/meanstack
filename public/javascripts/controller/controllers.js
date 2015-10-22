@@ -37,6 +37,11 @@ userNotes.controller('notesCtrl', function ($scope, $http) {
       {value:'Social Media Producers', text:'Social Media Producers'}
   ];
 
+  $scope.finalists = {
+    finalist: true
+  }; 
+
+
   $scope.updateUserNote = function(data, note) {
     $scope.Sub = note;
       return $http.post('https://sub.washingtonpost.com/updateSub', $scope.Sub);
@@ -56,6 +61,13 @@ userNotes.controller('notesCtrl', function ($scope, $http) {
       return $http.post('https://sub.washingtonpost.com/updateSub', $scope.Sub);
   };
 
+  $scope.updateUserFinalist = function(data, note) {
+    console.log(data, note);
+    $scope.Sub = note;
+    console.log ($scope.Sub);
+      return $http.post('https://sub.washingtonpost.com/updateSub', $scope.Sub);
+  };
+
   // Search
   $scope.filterFunction = function(element) {
   	return element.name.match(/^Ma/) ? true : false;
@@ -65,23 +77,44 @@ userNotes.controller('notesCtrl', function ($scope, $http) {
   $scope.getNotes = function(firstChoice) {
       config ={};
       $scope.stuff = {};
-      $scope.loading = true;
       var url = "https://sub.washingtonpost.com/external/55db882e53590b18611b7f66/viewSubs.jsonp?&callback=JSON_CALLBACK";
-      $http.jsonp(url)
-        .success(function(data){
-          $scope.loading = false;
-          $scope.userNotes = data.Submissions;
-          var tempArr = [];
-          angular.forEach($scope.userNotes, function(value){
-           tempArr.push( { test :  value } );
-          });
-          $scope.stuff=tempArr;
-          $scope.query = {
-            formData:{
-              first_choice_4: firstChoice
+      if (firstChoice === 'null' ) {
+        // window.console.log('tis null');
+      }else if (firstChoice === 'all' ){
+        $scope.loading = true;
+        $http.jsonp(url)
+          .success(function(data){
+            $scope.loading = false;
+            $scope.userNotes = data.Submissions;
+            var tempArr = [];
+            angular.forEach($scope.userNotes, function(value){
+             tempArr.push( { test :  value } );
+            });
+            $scope.stuff=tempArr;
+            $scope.query = {
+              formData:{
+                first_choice_4: ''
+              }
             }
-          }
-      });
+        });
+      }else{
+        $scope.loading = true;
+        $http.jsonp(url)
+          .success(function(data){
+            $scope.loading = false;
+            $scope.userNotes = data.Submissions;
+            var tempArr = [];
+            angular.forEach($scope.userNotes, function(value){
+             tempArr.push( { test :  value } );
+            });
+            $scope.stuff=tempArr;
+            $scope.query = {
+              formData:{
+                first_choice_4: firstChoice
+              }
+            }
+        });
+      }
 
   }
 
