@@ -27,7 +27,7 @@ $scope.getNotes = function() {
     $http.get("/api/notes", config, {}).
   		success(function(data) {
     	$scope.userNotes = data.all;
-    	console.log($scope.userNotes);
+    	// window.console.log($scope.userNotes);
     });
 }
 
@@ -38,7 +38,7 @@ $scope.singleNote = function(value) {
     $http.get("/api/notes/single/" + $scope.id, config, {}).
       success(function(data) {
       $scope.userNote = data.userNote;
-      console.log($scope.userNote);
+      // window.console.log($scope.userNote);
     });
 }
 
@@ -49,12 +49,12 @@ $scope.addNote = function() {
   	var url = '/api/addNote/';
   	$http.post(url, $scope.newNote)
       .success(function(data){
-        window.console.log(data);
+        // window.console.log(data);
         $scope.newNote = {};
         $scope.messages.addNote.success = "Great job! Add another one!"
       })
       .error(function(data,status){
-        window.console.log(data + status);
+        // window.console.log(data + status);
         $scope.messages.addNote.error = "Error encountered while adding note.";
       });
 }
@@ -65,11 +65,11 @@ $scope.removeNote = function(value) {
 	var url = '/api/removeNote/'+ value;
 	$http.delete(url)
     .success(function(data){
-      window.console.log(data);
+      // window.console.log(data);
       $scope.getNotes();
     })
     .error(function(data,status){
-      window.console.log(data + status);
+      // window.console.log(data + status);
     });
 }
 

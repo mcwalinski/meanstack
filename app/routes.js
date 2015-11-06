@@ -62,7 +62,8 @@ var UserNotes = require('./models/notes');
 
         // route to handle root request
         app.get('/', function(req, res) {
-            res.render('index'); // load our public/index.ejs file
+            // load our public/index.ejs file
+            res.render('index'); 
         });
 
         // route to handle note request
@@ -75,6 +76,12 @@ var UserNotes = require('./models/notes');
         app.get('/create', function(req, res) {
             // load our public/create.ejs file
             res.render('create'); 
+        });
+
+        // route to get help
+        app.get('/help', function(req, res) {
+            // load our public/help.ejs file
+            res.render('help'); 
         });
 
         // catch 404 and forward to error handler
